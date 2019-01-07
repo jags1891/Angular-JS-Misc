@@ -1,0 +1,162 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+</div>
+<div>
+  <h4><b>Typography</b></h4>
+  <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+  </p>
+</div>
+<br>
+<div>
+    <h4><b>Dialog</b></h4>
+    <button 
+    (click)="openDialog()"
+    mat-raised-button>Open Dialog</button>
+</div>
+<br>
+<div>
+    <h4><b>Tabs</b></h4>
+  <mat-tab-group>
+    <mat-tab label="Billing">content of billing</mat-tab>
+    <mat-tab label="Shipping">content of shipping</mat-tab>
+  </mat-tab-group>
+</div>
+<br>
+<div>
+    <h4><b>Tooltip</b></h4>
+    <span matTooltip="Here is my tooltip" matTooltipPosition="right">some text......please hover</span>
+</div>
+<br>
+<div>
+    <h4><b>Progress Spinner</b></h4>
+    <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+    <mat-progress-spinner 
+    *ngIf="isLoading"
+    mode="indeterminate" 
+    ></mat-progress-spinner>
+</div>
+<br>
+<div>
+    <h4><b>Chips</b></h4>
+    <mat-chip-list >
+        <mat-chip 
+        *ngFor="let category of categories"
+        (click)="selectCat(category)"
+        [selected]="category.selected"
+         >
+        {{category.value}}
+      </mat-chip>
+      </mat-chip-list>
+</div>
+<br>
+<div>
+  <h4><b>Buttons</b> </h4>
+  <button>HTML-Button</button>
+  <button mat-button>Mat-Button1</button>
+  <button mat-raised-button>Mat-Button2</button>
+  <button mat-raised-button color="primary">primary</button>
+  <button mat-raised-button color="accent">Accent</button>
+  <button mat-raised-button color="warn">Warn</button>
+  <button mat-fab color="primary"> <mat-icon>power_settings_new </mat-icon></button> <!-- Floatable action button -->
+</div>
+<br>
+<div>
+    <h4> <b>Icons</b> </h4>
+  <mat-icon class="lightbulb-outline">lightbulb_outline</mat-icon>
+</div>
+<br>
+<div>
+    <h4>Date picker </h4>
+    <mat-form-field>
+        <input 
+        matInput
+        (focus)="picker.open()"
+        [min]="minDate"
+        [max]="maxDate"
+        [matDatepicker]="picker" 
+        placeholder="Choose a date"
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker touchUi="true"></mat-datepicker>
+      </mat-form-field>
+</div>
+<br>
+<div>
+    <h4> <b>Inputs</b> </h4>
+    <form class="example-form">
+        <mat-form-field >
+          <input 
+          ngModel
+          #username
+          name="username"
+          matInput 
+          placeholder="Username" 
+          value="" 
+          required> 
+          <mat-hint>Enter your Username</mat-hint>
+          <span matSuffix>@domain.com</span>
+          <mat-error *ngIf="username.invalid && username.errors.required">
+            The Username field is required
+          </mat-error>
+        </mat-form-field> 
+      <br>
+        <mat-form-field >
+          <textarea matInput matTextareaAutosize matAutosizeMinRows="2"
+          matAutosizeMaxRows="5" placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+      </form>
+</div>
+<br>
+<div>
+    <h4><b>Dropdowns</b> </h4>
+<mat-form-field>
+    <mat-select placeholder="Favorite Colors" [(ngModel)]="color">
+        <mat-option *ngFor="let color of colors" [value]="color.id">{{color.value}}</mat-option>
+      </mat-select>
+</mat-form-field>
+</div>
+<br>
+<div>
+    <h4> <b>Radio Button</b> </h4>
+    <mat-radio-group value="2">
+      <mat-radio-button value="1">Male</mat-radio-button>
+      <mat-radio-button value="2" >Female</mat-radio-button> 
+      <!-- <mat-radio-button value="2" [checked]="isFemaleChecked">Female</mat-radio-button> -->
+    </mat-radio-group>  
+</div>
+  <br>
+<div>
+    <h4><b>Check boxes</b></h4>
+  <mat-checkbox
+  #showDetails
+  [value]=""
+  [checked]="isChecked"
+  (change)="onCheckChanged($event)"
+  >Show Details
+</mat-checkbox>
+</div>
+<br>
+<div *ngIf="showDetails.checked">
+    <h4>Here are some links to help you start: </h4>
+    <ul>
+      <li>
+        <a href="https://material.angular.io">https://material.angular.io</a>
+      </li>
+      <li>
+        <a href="https://hammerjs.github.io">https://hammerjs.github.io</a>
+      </li>
+      <li>
+        npm install --save @angular/material @angular/cdk
+      </li>
+      <li>
+        npm install --save @angular/animations hammerjs // Animations and hammer js to add touch gestures
+      </li>
+      
+    </ul>
+</div>
+
+

@@ -1,0 +1,38 @@
+<div @todosAnimation>
+
+  <h1  >Slide Animation</h1>
+
+<input #itemInput
+  class="form-control"
+  (keyup.enter)="addItem(itemInput)">
+
+<div *ngIf="items" class="list-group" >
+  <button 
+      @todoAnimation 
+      (@todoAnimation.start)="animationStart($event)"
+      (@todoAnimation.done)="animationDone($event)"
+      type="button"
+      *ngFor="let item of items"
+      (click)="removeItem(item)"
+      class="list-group-item"
+      >{{ item }}</button>
+</div> 
+<p>
+  instead of passing a number to animate() funtion, we can pass a string.<br>
+  Ex: '0.5s 1 ease-in' or '0.5s 1 cubic-bezier(.17, .67, .83, .67)'<br>
+  0.5s - animation time<br>
+  1 - 1sec delay<br>
+  ease-in- Easing (a function that determines speed of animation over time) <br>
+  In CSS, we have 3 types of easings - <br>
+  1) Standard easing - Linear speed (same speed). <br>
+  2) Ease-in - Start slowly, end fast. (move out) <br>
+  3) Ease-Out- Starts fast and ends slow. (move in) <br>
+  4) Ease-in-out - Starts slowly, picks up speed and ends slowly. <br>
+  Cubic Be`zier : cubic-bezier(.17, .67, .83, .67) <br>
+  <a>http://cubic-bezier.com/</a>
+  <a>https://daneden.github.io/animate.css/</a>
+
+
+</p>
+
+</div>
