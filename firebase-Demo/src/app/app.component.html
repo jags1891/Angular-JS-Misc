@@ -1,0 +1,57 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Firebase demo 
+  </h1>
+  
+</div>
+<div>
+  <h4>Add to the list</h4>
+  <input type="text" (keyup.enter)="addCourse(course)" #course>
+</div>
+<div>
+    <h4>Retrieve data from Firebase</h4>
+   <ul>
+     <li *ngFor="let course of courses$ | async">
+       {{course.payload.val()}} 
+      <button (click)="updateCourse(course)">Update</button>
+     </li>
+   </ul>
+   <p>Author</p>
+   <ul *ngIf="author$ | async as author">
+     <li>{{author.Firstname}}</li>
+     <li>{{author.Lastname}}</li>
+   </ul>
+   <p>Author: {{author$ | async| json}}</p>
+   <p>Course: {{course$ | async }}</p>
+</div>
+<div>
+  <h4>steps to setup Firebase</h4>
+  <ol>
+      <li>install Firebase: run -> npm install firebase angularfire2 -- save</li>
+      <li>Add a property "Firebase" in environment.ts add settings copied from the firebase website </li>
+      <li>
+        Add the following to app.module.ts
+        <ul>
+          <li>
+            <code>
+              {{step1}}
+            </code>
+          </li>
+          <li>
+             <code>
+                imports: [
+                BrowserModule,
+                AngularFireModule.initializeApp(environment.firebase),
+                AngularFireDatabaseModule
+                  ]
+             </code>
+          </li>
+        </ul>
+      </li>
+      <li>Inject AngularFireDatabase into the componet you want to use.</li>
+      <li></li>
+    </ol>
+</div>
+
+

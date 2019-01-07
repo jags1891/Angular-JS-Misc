@@ -1,0 +1,80 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  
+</div>
+<div>
+   <h2>GitHub deployment steps:</h2> 
+    <ol>
+      <li>Install xcode: xcode-select --install (if required)</li>
+      <li>Set Github origin: git remote add origin https://github.com/jags1891/followers-app.git</li>
+      <li>Push code to repository: git push origin master (enter username/password for github when prompted)</li>
+      <li>Install the package: sudo npm i -g angular-cli-ghpages</li>
+      <li>Build: ng build --prod --base-href="http://jags1891.github.io/followers-app/"</li>
+      <li>Publish: sudo ngh</li>
+      <li>Steps 5,6 can be replaced by creating a custom command in scripts object in package.json.
+          <ul>
+            <li>Add: "deploy-gh": "ng build --prod --base-href='https://jags1891.github.io/followers-app//' && sudo ngh"</li>
+            <li>Run this command: npm run deploy:gh</li>
+          </ul>
+      </li>
+    </ol>
+</div>
+
+<div>
+    <h2>Firebase deployment steps:</h2> 
+     <ol>
+       <li>Install tools: sudo npm i -g firebase-tools</li>
+       <li>Login: firebase login</li>
+       <li>Initialize Firebase: firebase init -> select hosting by using up/down keys.-> select the app if you already created one or create new</li>
+       <li>Open the file firebase.json -> add 
+         <pre ngNonBindable> 
+          {{ "hosting": {"public": "dist","rewrites": [{"source": "**","destination": "/index.html"}]}}
+        </pre>
+      </li>
+       <li>Build: ng build --prod</li>
+       <li>Publish: firebase deploy</li>
+       <li>To eliminate typing too many commands: Open Package.json
+          <ul>
+              <li>Add: "deploy-firebase": "ng build --prod && firebase deploy"</li>
+              <li>Run this command: npm run deploy-firebase</li>
+            </ul>
+       </li>
+     </ol>
+ </div>
+
+ <div>
+    <h2>Heroku deployment steps:</h2> 
+     <ol>
+       <li>Install Heroku cli: check version: heroku --version</li>
+       <li>Login: heroku login</li>
+       <li>Create a new app: heroku create [appname]/ heroku create (heroku will assign random name to the app)-> heroku open</li>
+       <li> Open Package.json and move the following dependencies from dev dependencies to dependencies
+          <ul>
+              <li>"@angular/cli": "1.2.4",</li>
+              <li>"@angular/compiler-cli": "^4.0.0",</li>
+              <li> "typescript": "~2.3.3"</li>
+            </ul>
+       </li>
+       <li>Add entry "postinstall":"ng build --prod", to the scripts object in package.json.</li>
+       <li>If you are using express as a backend server, run : npm i express --save</li>
+       <li>change "start": "ng serve" in scripts section of package.json to "node server.js"</li>
+       <li>Commit the changes to Git: git add .-> git commit -m "Prepare for heroku"</li>
+       <li>run -> git remote: you will see heroku and origin</li>
+       <li>run -> git push heroku master</li>
+       <li>run -> heroku open</li>
+       <li>Incase of any issuee, run -> heroku logs -t</li>
+       <li>As a best practice add a section "engines" in the package.json
+          <ul>
+              <li>Example: <pre ngNonBindable> 
+                  "engines": {{
+                    "node":"7.10.0",
+                    "npm": "4.2.0"
+                  }}
+                </pre></li>
+            </ul>
+       </li>
+       
+     </ol>
+ </div>
